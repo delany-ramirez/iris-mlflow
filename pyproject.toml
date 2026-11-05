@@ -1,0 +1,15 @@
+[project]
+name = "iris-mlflow"
+version = "0.1.0"
+description = "Random Forest + MLflow (Iris): ejemplo de seguimiento de experimentos"
+requires-python = ">=3.12"
+dependencies = [
+    "databricks-sdk>=0.162",
+    "matplotlib>=3.10",
+    "mlflow>=3.18",
+    "numpy>=2.5",
+    "pandas>=3.1",
+    "pyarrow>=26",
+    "scikit-learn>=1.9",
+    "seaborn>=0.13",
+]

@@ -18,7 +18,8 @@ parser.add_argument("--run_name", type=str, default=None)
 args = parser.parse_args()
 
 # -------------------- Tracking URI (edit if needed) ---------------------------
-# mlflow.set_tracking_uri("file:///C:/_mlflow_runs")  # opcional
+# Defaults to sqlite:///mlflow.db in the working directory.
+# mlflow.set_tracking_uri("sqlite:///C:/_mlflow_runs/mlflow.db")  # optional
 
 # -------------------- Datos ----------------------------------------------------
 iris = load_iris()
@@ -52,6 +53,9 @@ with mlflow.start_run(run_name=args.run_name) as run:
         name="model",  
         signature=signature,
         input_example=X_train[:5],
+        # skops rejects this type by default; safe here because this script trains
+        # the model itself. Do not extend this trust to models from unknown sources.
+        skops_trusted_types=["sklearn.tree._tree.Tree"],
     )
 
     print("=" * 60)
